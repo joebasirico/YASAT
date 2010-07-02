@@ -1,0 +1,86 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Rules>
+  <Rule>
+    <Title>Potential Format String Issue</Title>
+    <RegularExpressionPattern>(printf|wprintf|sprintf|swprintf|fprintf|fwprintf|vprintf|scanf|fscanf|sscanf|fwscanf|wscanf|swscanf|snprintf|StringCbPrintf|StringCbPrintfEx|StringCchPrintf)\([^"].*\)</RegularExpressionPattern>
+    <Extensions>
+      <Extension>c</Extension>
+      <Extension>cpp</Extension>
+      <Extension>h</Extension>
+      <Extension>hpp</Extension>
+    </Extensions>
+    <Guidance>
+      <Url>http://teammentor/ViewGuidanceItem.aspx?ItemID=8f43aec6-922c-44b7-b240-28a400fa301e</Url>
+    </Guidance>
+    <Description>Programming languages such C and Perl use string functions, like printf(), that allow users to pass a format for the input string.  Attackers can manipulate the input parameters passed to these functions to make the function work differently.  Attackers can use format string bugs to overwrite parts of the stack, corrupt memory, and crash the system.  They can use this vulnerability to execute different kind of attacks such as elevation of privileges, authentication bypass, information disclosure, and denial of services.</Description>
+  </Rule>
+  <Rule>
+    <Title>Potential Buffer Overflow Issue</Title>
+    <RegularExpressionPattern>(strcpy|strcat|scanf|strncpy|strncat|gets|gets|readf|freadf ReadFile|fscanf|recv|recvfrom|memcpy|memmove|memset|RegQueryValue|RegQueryKey)\(.*\)</RegularExpressionPattern>
+    <Extensions>
+      <Extension>c</Extension>
+      <Extension>cpp</Extension>
+      <Extension>h</Extension>
+      <Extension>hpp</Extension>
+    </Extensions>
+    <Guidance>
+      <Url>http://teammentor/ViewGuidanceItem.aspx?ItemID=c6fdecbd-8856-4da7-974f-be79b29b9e11</Url>
+    </Guidance>
+    <Description>Buffer overflows are among the most dangerous security vulnerabilities.  They allow attackers to run code within the application they attack, with the application's privileges, and without user interaction.  A buffer overflow occurs when more data is written into a memory buffer than there is room for in the buffer, either because more data was provided than expected, or because the program incorrectly allocated to little memory.  In this way the malicious data overflows  the buffer.  Alternately, data can be written to a different location than the program expected.</Description>
+  </Rule>
+  <Rule>
+    <Title>Potential Format String Issue</Title>
+    <RegularExpressionPattern>s?printf\([^"].*\)</RegularExpressionPattern>
+    <Extensions>
+      <Extension>pl</Extension>
+    </Extensions>
+    <Guidance>
+      <Url>http://teammentor/ViewGuidanceItem.aspx?ItemID=8f43aec6-922c-44b7-b240-28a400fa301e</Url>
+    </Guidance>
+    <Description>Programming languages such C and Perl use string functions, like printf(), that allow users to pass a format for the input string.  Attackers can manipulate the input parameters passed to these functions to make the function work differently.  Attackers can use format string bugs to overwrite parts of the stack, corrupt memory, and crash the system.  They can use this vulnerability to execute different kind of attacks such as elevation of privileges, authentication bypass, information disclosure, and denial of services.</Description>
+  </Rule>
+  <Rule>
+    <Title>Common commented bug</Title>
+    <RegularExpressionPattern>(//(.*)(fixme|bugbug|todo))|(//(\s+?)bug)</RegularExpressionPattern>
+    <Extensions>
+      <Extension>*</Extension>
+    </Extensions>
+    <Guidance>
+      <Url>http://google.com</Url>
+    </Guidance>
+    <Description>Often developers will make notes in source to remind themselves to return to a block of code due to a known issue or bug. </Description>
+  </Rule>
+  <Rule>
+    <Title>Potential Custom Encryption or Hardcoded keys</Title>
+    <RegularExpressionPattern>(encrypt|decrypt|crypt|hash|hasher)\(.*\)</RegularExpressionPattern>
+    <Extensions>
+      <Extension>*</Extension>
+    </Extensions>
+    <Guidance>
+      <Url>http://teammentor.securityinnovation.com/default.aspx#Filter=%7B%7D%7BCategory%7CCryptography%7D</Url>
+    </Guidance>
+    <Description>Custom encryption should never be used. Upgrade to industry standards such as RSA, AES, SHA256, etc.</Description>
+  </Rule>
+  <Rule>
+    <Title>Potential poor encoder</Title>
+    <RegularExpressionPattern>((url|html)?encode(url|html)?|(url|html)?decode(url|html)?)\(.*\)</RegularExpressionPattern>
+    <Extensions>
+      <Extension>*</Extension>
+    </Extensions>
+    <Guidance>
+      <Url>http://teammentor.securityinnovation.com/default.aspx#Filter=%7B%7D%7BCategory%7CCryptography%7D</Url>
+    </Guidance>
+    <Description>Custom encryption should never be used. Upgrade to industry standards such as RSA, AES, SHA256, etc.</Description>
+  </Rule>
+  <Rule>
+    <Title>Poor Exception Handling and Information Disclosure</Title>
+    <RegularExpressionPattern>e(x)?\.(ToString|getmessage|Message)(\(\))?</RegularExpressionPattern>
+    <Extensions>
+      <Extension>*</Extension>
+    </Extensions>
+    <Guidance>
+      <Url>http://teammentor.securityinnovation.com/default.aspx#Filter=%7BLibrary%7Cea854894-8e16-46c8-9c61-737ef46d7e82%7CFundamentals%20of%20Security%7C3ee51350-351e-473b-8e07-611132e23efd%7D</Url>
+    </Guidance>
+    <Description>Exceptions should not be written directly to the screen for a user or attacker to see. They are not helpful to the average user and could be leveraged by an attacker to conduct further attacker. Consider using a sanitized, static error message instead.</Description>
+  </Rule>
+</Rules>

@@ -1,0 +1,6 @@
+﻿<Window x:Class="YASAT.GenerateReport"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="GenerateReport" Height="388" Width="568" Loaded="Window_Loaded">
+    <Grid></Grid>
+</Window>
