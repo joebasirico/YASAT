@@ -41,7 +41,7 @@
   </Rule>
   <Rule>
     <Title>Common commented bug</Title>
-    <RegularExpressionPattern>(//(.*)(fixme|bugbug|todo))|(//(\s+?)bug)</RegularExpressionPattern>
+    <RegularExpressionPattern>(//(.*)(fixme|bugbug|todo|hack))|(//(\s+?)bug)</RegularExpressionPattern>
     <Extensions>
       <Extension>*</Extension>
     </Extensions>

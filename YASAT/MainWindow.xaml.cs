@@ -26,7 +26,8 @@ namespace YASAT
     public partial class MainWindow : Window
     {
         List<Rule> rules;
-        List<SourceCodeIssue> issues = new List<SourceCodeIssue>();
+        //List<SourceCodeIssue> issues = new List<SourceCodeIssue>();
+        ProjectInfo projectInfo = new ProjectInfo();
 
         public MainWindow()
         {
@@ -56,7 +57,7 @@ namespace YASAT
                     Scan.IsEnabled = true;
                 }
             }
-            
+
         }
 
         private int CountFiles(string directory, int currentFileCount)
@@ -73,7 +74,7 @@ namespace YASAT
 
             foreach (string file in Directory.GetFiles(directory))
             {
-                if(filetypeList.Contains("*"))
+                if (filetypeList.Contains("*"))
                     currentFileCount++;
                 else if (disregardFiletypes.IsChecked.Value || filetypeList.Contains(System.IO.Path.GetExtension(file)))
                     currentFileCount++;
@@ -98,13 +99,15 @@ namespace YASAT
 
         private void ScanFile(string file)
         {
+            SourceFile sourceFile = new SourceFile(file);
             foreach (Rule rule in rules)
             {
                 if (rule.ExtensionList().Contains("*"))
-                    issues.AddRange(rule.FindIssues(file));
+                    sourceFile.issues.AddRange(rule.FindIssues(file));
                 else if (disregardFiletypes.IsChecked.Value || rule.ExtensionList().Contains(System.IO.Path.GetExtension(file)))
-                    issues.AddRange(rule.FindIssues(file));
+                    sourceFile.issues.AddRange(rule.FindIssues(file));
             }
+            projectInfo.files.Add(sourceFile);
         }
 
         private void Scan_Click(object sender, RoutedEventArgs e)
@@ -116,7 +119,7 @@ namespace YASAT
             }
 
             ReportSummary.Visibility = System.Windows.Visibility.Visible;
-            ReportSummary.Text = "Scan Completed, " + issues.Count + " issues discovered." +
+            ReportSummary.Text = "Scan Completed, " + projectInfo.GetIssuesCount() + " issues discovered." +
                 "Click Generate Report to create a new report";
 
             GenReport.IsEnabled = true;
@@ -147,26 +150,33 @@ namespace YASAT
                     default:
                         break;
                 }
-                
+
                 sw.Close();
 
+                //displays the file in the default viewer
                 Process.Start(sfd.FileName);
             }
         }
 
         private void SaveAsCsv(StreamWriter sw)
         {
-            foreach (SourceCodeIssue issue in issues)
+            foreach (SourceFile file in projectInfo.files)
             {
-                sw.WriteLine(issue.GenerateCsv());
+                foreach (SourceCodeIssue issue in file.issues)
+                {
+                    sw.WriteLine(issue.GenerateCsv());
+                }
             }
         }
 
         private void SaveAsTxt(StreamWriter sw)
         {
-            foreach (SourceCodeIssue issue in issues)
+            foreach (SourceFile file in projectInfo.files)
             {
-                sw.WriteLine(issue.GenerateText());
+                foreach (SourceCodeIssue issue in file.issues)
+                {
+                    sw.WriteLine(issue.GenerateText());
+                }
             }
         }
 
@@ -178,9 +188,24 @@ body{font-family: arial, san-serif;}
 .IssueDescription{padding: 5px;background-color: #eee;color: #333;font-size: small;}
 .offendingLine{color: #D22;font-weight: bold;}
 </style><body>");
-            foreach (SourceCodeIssue issue in issues)
+
+            sw.WriteLine("<h1>YASAT Report</h1>");
+            sw.WriteLine("<h2>Statistics</h2>");
+            sw.WriteLine("{0} files scanned</br>", projectInfo.files.Count);
+            sw.WriteLine("{0} lines of code scanned</br>", projectInfo.getTotalLinesOfCode());
+            sw.WriteLine("{0} estimated hours to code review</br>", projectInfo.EstimateCodeReviewTime());
+            sw.WriteLine("{0} total issues disovered</br>", projectInfo.GetIssuesCount());
+
+            foreach (SourceFile file in projectInfo.files)
             {
-                sw.WriteLine(issue.GenerateHTMLSnippet());
+                if (file.issues.Count > 0)
+                {
+                    sw.WriteLine("<h2>{0}</h2><h5>{1}", System.IO.Path.GetFileName(file.path), file.path);
+                    foreach (SourceCodeIssue issue in file.issues)
+                    {
+                        sw.WriteLine(issue.GenerateHTMLSnippet());
+                    }
+                }
             }
             sw.WriteLine("</body></html>");
         }
@@ -209,7 +234,7 @@ body{font-family: arial, san-serif;}
         private void OpenRuleFile_Click(object sender, RoutedEventArgs e)
         {
             OpenFileDialog ofd = new OpenFileDialog();
-            
+
             ofd.Filter = "YASAT Rules File (*.xml)|*.xml";
             ofd.Multiselect = true;
             ofd.FilterIndex = 0;
@@ -221,7 +246,7 @@ body{font-family: arial, san-serif;}
                     if (File.Exists(file))
                         realFiles.Add(file);
                 }
-                if(realFiles.Count > 0)
+                if (realFiles.Count > 0)
                     rules = RuleManager.GetAllRules(realFiles);
             }
         }

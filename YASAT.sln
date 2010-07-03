@@ -21,6 +21,7 @@ Global
 		{FBBF8E22-A902-40B6-BF9E-AB2438288C53}.Debug|x86.ActiveCfg = Debug|x86
 		{FBBF8E22-A902-40B6-BF9E-AB2438288C53}.Debug|x86.Build.0 = Debug|x86
 		{FBBF8E22-A902-40B6-BF9E-AB2438288C53}.Release|Any CPU.ActiveCfg = Release|x86
+		{FBBF8E22-A902-40B6-BF9E-AB2438288C53}.Release|Any CPU.Build.0 = Release|x86
 		{FBBF8E22-A902-40B6-BF9E-AB2438288C53}.Release|Mixed Platforms.ActiveCfg = Release|x86
 		{FBBF8E22-A902-40B6-BF9E-AB2438288C53}.Release|Mixed Platforms.Build.0 = Release|x86
 		{FBBF8E22-A902-40B6-BF9E-AB2438288C53}.Release|x86.ActiveCfg = Release|x86
