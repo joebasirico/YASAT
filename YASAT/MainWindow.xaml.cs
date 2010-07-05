@@ -192,7 +192,18 @@ body{font-family: arial, san-serif;}
             sw.WriteLine("<h1>YASAT Report</h1>");
             sw.WriteLine("<h2>Statistics</h2>");
             sw.WriteLine("{0} files scanned</br>", projectInfo.files.Count);
+            bool haswildCard = false;
+            foreach (Rule r in rules)
+            {
+                if (r.ExtensionList().Contains("*"))
+                    haswildCard = true;
+            }
+            if (haswildCard)
+                sw.WriteLine("<em>Warning:</em> One or more of the rules included in the scan has a wildcard (*) in the extension list" +
+                        " this will cause YASAT to scan all files (including .gif, .zip, .foo, .bar, etc.). This will likely" + 
+                        " not give you the Lines of Code measurements and time to code review estimates you were looking for.");
             sw.WriteLine("{0} lines of code scanned</br>", projectInfo.getTotalLinesOfCode());
+            WriteLinesPerExtension("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{0} - {1} <br/>", sw, projectInfo);
             sw.WriteLine("{0} estimated hours to code review</br>", projectInfo.EstimateCodeReviewTime());
             sw.WriteLine("{0} total issues disovered</br>", projectInfo.GetIssuesCount());
 
@@ -208,6 +219,35 @@ body{font-family: arial, san-serif;}
                 }
             }
             sw.WriteLine("</body></html>");
+        }
+
+        private void WriteLinesPerExtension(string format, StreamWriter sw, ProjectInfo projectInfo)
+        {
+            List<KeyValuePair<string, int>> ExtensionLineCount = new List<KeyValuePair<string, int>>();
+            foreach (SourceFile file in projectInfo.files)
+            {
+                bool found = false;
+                foreach (KeyValuePair<string, int> extLinePair in ExtensionLineCount)
+                {
+                    if (extLinePair.Key == System.IO.Path.GetExtension(file.path))
+                    {
+                        int newTotal = extLinePair.Value + file.lines;
+                        ExtensionLineCount.Remove(extLinePair);
+                        ExtensionLineCount.Add(new KeyValuePair<string, int>(System.IO.Path.GetExtension(file.path), newTotal));
+                        found = true;
+                        break;
+                    }
+                }
+                if (!found && file.issues.Count > 0)
+                {
+                    ExtensionLineCount.Add(new KeyValuePair<string, int>(System.IO.Path.GetExtension(file.path), file.lines));
+                }
+            }
+
+            foreach (KeyValuePair<string, int> extLinePair in ExtensionLineCount)
+            {
+                sw.WriteLine(format, extLinePair.Key, extLinePair.Value);
+            }
         }
 
         private void CreateRule_Click(object sender, RoutedEventArgs e)

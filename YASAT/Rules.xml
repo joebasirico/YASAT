@@ -43,7 +43,19 @@
     <Title>Common commented bug</Title>
     <RegularExpressionPattern>(//(.*)(fixme|bugbug|todo|hack))|(//(\s+?)bug)</RegularExpressionPattern>
     <Extensions>
-      <Extension>*</Extension>
+      <Extension>c</Extension>
+      <Extension>cpp</Extension>
+      <Extension>h</Extension>
+      <Extension>hpp</Extension>
+	  <Extension>cs</Extension>
+	  <Extension>java</Extension>
+	  <Extension>py</Extension>
+	  <Extension>php</Extension>
+	  <Extension>js</Extension>
+	  <Extension>m</Extension>
+	  <Extension>pl</Extension>
+	  <Extension>sql</Extension>
+	  <Extension>vb</Extension>
     </Extensions>
     <Guidance>
       <Url>http://google.com</Url>
@@ -54,7 +66,19 @@
     <Title>Potential Custom Encryption or Hardcoded keys</Title>
     <RegularExpressionPattern>(encrypt|decrypt|crypt|hash|hasher)\(.*\)</RegularExpressionPattern>
     <Extensions>
-      <Extension>*</Extension>
+      <Extension>c</Extension>
+      <Extension>cpp</Extension>
+      <Extension>h</Extension>
+      <Extension>hpp</Extension>
+	  <Extension>cs</Extension>
+	  <Extension>java</Extension>
+	  <Extension>py</Extension>
+	  <Extension>php</Extension>
+	  <Extension>js</Extension>
+	  <Extension>m</Extension>
+	  <Extension>pl</Extension>
+	  <Extension>sql</Extension>
+	  <Extension>vb</Extension>
     </Extensions>
     <Guidance>
       <Url>http://teammentor.securityinnovation.com/default.aspx#Filter=%7B%7D%7BCategory%7CCryptography%7D</Url>
@@ -65,7 +89,19 @@
     <Title>Potential poor encoder</Title>
     <RegularExpressionPattern>((url|html)?encode(url|html)?|(url|html)?decode(url|html)?)\(.*\)</RegularExpressionPattern>
     <Extensions>
-      <Extension>*</Extension>
+      <Extension>c</Extension>
+      <Extension>cpp</Extension>
+      <Extension>h</Extension>
+      <Extension>hpp</Extension>
+	  <Extension>cs</Extension>
+	  <Extension>java</Extension>
+	  <Extension>py</Extension>
+	  <Extension>php</Extension>
+	  <Extension>js</Extension>
+	  <Extension>m</Extension>
+	  <Extension>pl</Extension>
+	  <Extension>sql</Extension>
+	  <Extension>vb</Extension>
     </Extensions>
     <Guidance>
       <Url>http://teammentor.securityinnovation.com/default.aspx#Filter=%7B%7D%7BCategory%7CCryptography%7D</Url>
@@ -76,7 +112,19 @@
     <Title>Poor Exception Handling and Information Disclosure</Title>
     <RegularExpressionPattern>e(x)?\.(ToString|getmessage|Message)(\(\))?</RegularExpressionPattern>
     <Extensions>
-      <Extension>*</Extension>
+      <Extension>c</Extension>
+      <Extension>cpp</Extension>
+      <Extension>h</Extension>
+      <Extension>hpp</Extension>
+	  <Extension>cs</Extension>
+	  <Extension>java</Extension>
+	  <Extension>py</Extension>
+	  <Extension>php</Extension>
+	  <Extension>js</Extension>
+	  <Extension>m</Extension>
+	  <Extension>pl</Extension>
+	  <Extension>sql</Extension>
+	  <Extension>vb</Extension>
     </Extensions>
     <Guidance>
       <Url>http://teammentor.securityinnovation.com/default.aspx#Filter=%7BLibrary%7Cea854894-8e16-46c8-9c61-737ef46d7e82%7CFundamentals%20of%20Security%7C3ee51350-351e-473b-8e07-611132e23efd%7D</Url>
@@ -87,7 +135,19 @@
     <Title>Potential SQL Injection Issue</Title>
     <RegularExpressionPattern>(select|insert|delete|drop|update)</RegularExpressionPattern>
     <Extensions>
-      <Extension>*</Extension>
+      <Extension>c</Extension>
+      <Extension>cpp</Extension>
+      <Extension>h</Extension>
+      <Extension>hpp</Extension>
+	  <Extension>cs</Extension>
+	  <Extension>java</Extension>
+	  <Extension>py</Extension>
+	  <Extension>php</Extension>
+	  <Extension>js</Extension>
+	  <Extension>m</Extension>
+	  <Extension>pl</Extension>
+	  <Extension>sql</Extension>
+	  <Extension>vb</Extension>
     </Extensions>
     <Guidance>
       <Url>http://teammentor.securityinnovation.com/ViewGuidanceItem.aspx?ItemID=d4b48303-d535-4549-90fc-474b99eff901</Url>
