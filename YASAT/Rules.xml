@@ -60,7 +60,7 @@
     <Guidance>
       <Url>http://google.com</Url>
     </Guidance>
-    <Description>Often developers will make notes in source to remind themselves to return to a block of code due to a known issue or bug. </Description>
+    <Description>Often developers will make notes in source to remind themselves to return to a block of code due to a known issue or bug.</Description>
   </Rule>
   <Rule>
     <Title>Potential Custom Encryption or Hardcoded keys</Title>
@@ -129,7 +129,7 @@
     <Guidance>
       <Url>http://teammentor.securityinnovation.com/default.aspx#Filter=%7BLibrary%7Cea854894-8e16-46c8-9c61-737ef46d7e82%7CFundamentals%20of%20Security%7C3ee51350-351e-473b-8e07-611132e23efd%7D</Url>
     </Guidance>
-    <Description>Exceptions should not be written directly to the screen for a user or attacker to see. They are not helpful to the average user and could be leveraged by an attacker to conduct further attacker. Consider using a sanitized, static error message instead.</Description>
+    <Description>Exceptions should not be written directly to the screen for a user or attacker to see. They are not helpful to the average user and could be leveraged by an attacker to conduct further attacks. Consider using a sanitized, static error message instead.</Description>
   </Rule>
   <Rule>
     <Title>Potential SQL Injection Issue</Title>
