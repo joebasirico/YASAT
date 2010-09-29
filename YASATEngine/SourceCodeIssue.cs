@@ -87,6 +87,17 @@ namespace YASATEngine
             }
         }
 
+
+        public string GenerateSmallHTMLSnippet()
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.Append("<div>" + _rule.Title + "<br/>");
+
+            sb.Append( _lineNumber + ": ");
+            sb.Append("<code>" + HtmlEncode(_offendingLine) + "</code></div>");
+            return sb.ToString();
+        }
+
         public string GenerateHTMLSnippet()
         {
             StringBuilder sb = new StringBuilder();
@@ -94,13 +105,18 @@ namespace YASATEngine
             sb.Append("<h2>Code</h2>");
             sb.Append("<div>" + _filePath + ":");
             sb.Append("<strong>" + _lineNumber + "</strong><br />");
-            sb.Append("<strong>Offending Line: <br /><strong><code>" + _offendingLine + "</strong></code></strong><hr />");
+            sb.Append("<strong>Offending Line: <br /><strong><code>" +  HtmlEncode(_offendingLine) + "</strong></code></strong><hr />");
             sb.Append("<pre><code>");
-            sb.Append(_codeBefore);
-            sb.Append("<span class=\"offendingLine\">" + _offendingLine + "</span>\r\n");
-            sb.Append(_codeAfter);
+            sb.Append(HtmlEncode(_codeBefore));
+            sb.Append("<span class=\"offendingLine\">" + HtmlEncode(_offendingLine) + "</span>\r\n");
+            sb.Append(HtmlEncode(_codeAfter));
             sb.Append("</code></pre></div>");
             return sb.ToString();
+        }
+
+        private string HtmlEncode(string _offendingLine)
+        {
+            return _offendingLine.Replace("&", "&amp;").Replace(">", "&gt;").Replace("<", "&lt;").Replace("\"", "&quot;");
         }
 
         public string GenerateMarkDown()

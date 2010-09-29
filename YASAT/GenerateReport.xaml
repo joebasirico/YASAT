@@ -2,5 +2,8 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="GenerateReport" Height="388" Width="568" Loaded="Window_Loaded">
-    <Grid></Grid>
+    <Grid>
+        <RadioButton Content="RadioButton" Height="16" HorizontalAlignment="Left" Margin="30,37,0,0" Name="radioButton1" VerticalAlignment="Top" />
+        <RadioButton Content="RadioButton" Height="16" HorizontalAlignment="Left" Margin="30,59,0,0" Name="radioButton2" VerticalAlignment="Top" />
+    </Grid>
 </Window>

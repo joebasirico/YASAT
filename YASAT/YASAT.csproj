@@ -61,6 +61,9 @@
     <Compile Include="NewRule.xaml.cs">
       <DependentUpon>NewRule.xaml</DependentUpon>
     </Compile>
+    <Compile Include="SelectRules.xaml.cs">
+      <DependentUpon>SelectRules.xaml</DependentUpon>
+    </Compile>
     <Page Include="GenerateReport.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -78,6 +81,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="NewRule.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SelectRules.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

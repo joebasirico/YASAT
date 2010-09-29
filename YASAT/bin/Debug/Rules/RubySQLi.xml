@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Rules>
+<!--  <Rule>
+    <Title>Potential SQL Injection Issue</Title>
+    <RegularExpressionPattern>["|'].*(select|insert|delete|drop|update).*["|']</RegularExpressionPattern>
+    <Extensions>
+      <Extension>rb</Extension>
+      <Extension>erb</Extension>
+    </Extensions>
+    <Guidance>
+      <Url>http://teammentor.securityinnovation.com/ViewGuidanceItem.aspx?ItemID=d4b48303-d535-4549-90fc-474b99eff901</Url>
+    </Guidance>
+    <Description>A SQL injection attack exploits vulnerabilities in input validation to run arbitrary commands in the database. It can occur when your application uses input to construct dynamic SQL statements to access the database. It can also occur if your code uses stored procedures that are passed strings that contain raw user input. Using the SQL injection attack, an attacker can execute arbitrary commands in your database, with all the privileges granted to the process being attacked.</Description>
+  </Rule>-->
+   <Rule>
+    <Title>Ruby on Rails Active Recort Potential SQL Injection Issue</Title>
+    <RegularExpressionPattern>find_by_sql|paginate_by_sql</RegularExpressionPattern>
+    <Extensions>
+	  <Extension>rb</Extension>
+	  <Extension>erb</Extension>
+    </Extensions>
+    <Guidance>
+      <Url>http://teammentor.securityinnovation.com/ViewGuidanceItem.aspx?ItemID=d4b48303-d535-4549-90fc-474b99eff901</Url>
+    </Guidance>
+    <Description>A SQL injection attack exploits vulnerabilities in input validation to run arbitrary commands in the database. It can occur when your application uses input to construct dynamic SQL statements to access the database. It can also occur if your code uses stored procedures that are passed strings that contain raw user input. Using the SQL injection attack, an attacker can execute arbitrary commands in your database, with all the privileges granted to the process being attacked.</Description>
+  </Rule>
+</Rules>

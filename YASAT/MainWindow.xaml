@@ -13,6 +13,7 @@
             <MenuItem Header="Rules">
                 <MenuItem Header="Create New Rule" Name="CreateRule" Click="CreateRule_Click"></MenuItem>
                 <MenuItem Header="Clear Rules" Name="ClearRules" Click="ClearRules_Click"></MenuItem>
+                <MenuItem Header="Select Rules to run" Name="SelectRulesMenu" Click="SelectRules_Click"></MenuItem>
             </MenuItem>
         </Menu>
         <TextBox Height="23" Margin="12,98,0,0" Name="ScanDirectory" VerticalAlignment="Top" HorizontalAlignment="Left" Width="398" Grid.ColumnSpan="3" />

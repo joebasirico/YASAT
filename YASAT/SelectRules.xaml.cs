@@ -10,24 +10,33 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using System.IO;
+using YASATEngine;
 
 namespace YASAT
 {
     /// <summary>
-    /// Interaction logic for GenerateReport.xaml
+    /// Interaction logic for SelectRules.xaml
     /// </summary>
-    public partial class GenerateReport : Window
+    public partial class SelectRules : Window
     {
-        public GenerateReport()
+        private List<Rule> _rules;
+
+        public SelectRules()
         {
             InitializeComponent();
         }
 
-        private void Window_Loaded(object sender, RoutedEventArgs e)
+        public SelectRules(List<YASATEngine.Rule> rules)
         {
-            foreach (string templateFile in Directory.GetFiles("ReportTemplates"))
+            // TODO: Complete member initialization
+            _rules = rules;
+        }
+
+        private void InitializeRuleList()
+        {
+            foreach (Rule r in _rules)
             {
+                
             }
         }
     }

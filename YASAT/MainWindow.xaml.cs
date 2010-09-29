@@ -39,7 +39,22 @@ namespace YASAT
 
         private void RefreshUI()
         {
-            RuleCountMessage.Text = rules.Count + " rules loaded.";
+            RuleCountMessage.Text = GetEnabledRuleCount(rules) + " / " + rules.Count + " rules currently checked.";
+            if (!string.IsNullOrEmpty(ScanDirectory.Text) && Directory.Exists(ScanDirectory.Text))
+            {
+                FileCountMessage.Text = CountFiles(ScanDirectory.Text, 0) + " files discovered that match rules.";
+                Scan.IsEnabled = true;
+            }
+        }
+
+        private int GetEnabledRuleCount(List<Rule> rules)
+        {
+            int enabledRules = 0;
+            foreach (Rule r in rules)
+                if (r.Selected)
+                    enabledRules++;
+
+            return enabledRules;
         }
 
         private void Browse_Click(object sender, RoutedEventArgs e)
@@ -52,9 +67,11 @@ namespace YASAT
                 string dirPath = System.IO.Path.GetDirectoryName(ofd.FileName);
                 if (Directory.Exists(dirPath))
                 {
+                    projectInfo.files.Clear();
                     ScanDirectory.Text = dirPath;
                     FileCountMessage.Text = CountFiles(dirPath, 0) + " files discovered that match rules.";
                     Scan.IsEnabled = true;
+                    RefreshUI();
                 }
             }
 
@@ -86,6 +103,8 @@ namespace YASAT
 
         private void PerformScan(string directory)
         {
+            ReportSummary.Text = "Now Scanning: " + directory;
+            this.UpdateLayout();
             foreach (string file in Directory.GetFiles(directory))
             {
                 ScanFile(file);
@@ -130,7 +149,7 @@ namespace YASAT
             SaveFileDialog sfd = new SaveFileDialog();
             sfd.AddExtension = true;
             sfd.FileName = "YASAT_Report";
-            sfd.Filter = "HTML Report (*.htm)|*.htm|CSV Report (*.csv)|*.csv|Text Report (*.txt)|*.txt";
+            sfd.Filter = "HTML Report (*.htm)|*.htm|Condensed HTML Report (*.html)|*.html|CSV Report (*.csv)|*.csv|Text Report (*.txt)|*.txt";
             sfd.FilterIndex = 0;
             if (sfd.ShowDialog().Value)
             {
@@ -140,6 +159,9 @@ namespace YASAT
                 {
                     case ".htm":
                         SaveAsHTML(sw);
+                        break;
+                    case ".html":
+                        SaveAsSmallHTML(sw);
                         break;
                     case ".txt":
                         SaveAsTxt(sw);
@@ -156,6 +178,47 @@ namespace YASAT
                 //displays the file in the default viewer
                 Process.Start(sfd.FileName);
             }
+        }
+
+        private void SaveAsSmallHTML(StreamWriter sw)
+        {
+            sw.WriteLine(@"<html><head>
+<style>
+body{font-family: arial, san-serif;font-size:small;}
+.IssueDescription{padding: 5px;background-color: #eee;color: #333;font-size: small;}
+.offendingLine{color: #D22;font-weight: bold;}
+</style><body>");
+
+            sw.WriteLine("<h1>YASAT Report</h1>");
+            sw.WriteLine("<h2>Statistics</h2>");
+            sw.WriteLine("{0} files scanned</br>", projectInfo.files.Count);
+            bool haswildCard = false;
+            foreach (Rule r in rules)
+            {
+                if (r.ExtensionList().Contains("*"))
+                    haswildCard = true;
+            }
+            if (haswildCard)
+                sw.WriteLine("<em>Warning:</em> One or more of the rules included in the scan has a wildcard (*) in the extension list" +
+                        " this will cause YASAT to scan all files (including .gif, .zip, .foo, .bar, etc.). This will likely" +
+                        " not give you the Lines of Code measurements and time to code review estimates you were looking for.");
+            sw.WriteLine("{0} lines of code scanned</br>", projectInfo.getTotalLinesOfCode());
+            WriteLinesPerExtension("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{0} - {1} <br/>", sw, projectInfo);
+            sw.WriteLine("{0} estimated hours to code review</br>", projectInfo.EstimateCodeReviewTime());
+            sw.WriteLine("{0} total issues disovered</br>", projectInfo.GetIssuesCount());
+
+            foreach (SourceFile file in projectInfo.files)
+            {
+                if (file.issues.Count > 0)
+                {
+                    sw.WriteLine("<br/><strong>{0}</strong>", file.path);
+                    foreach (SourceCodeIssue issue in file.issues)
+                    {
+                        sw.WriteLine(issue.GenerateSmallHTMLSnippet());
+                    }
+                }
+            }
+            sw.WriteLine("</body></html>");
         }
 
         private void SaveAsCsv(StreamWriter sw)
@@ -280,6 +343,8 @@ body{font-family: arial, san-serif;}
             ofd.FilterIndex = 0;
             if (ofd.ShowDialog().Value)
             {
+                ResetState();
+
                 List<string> realFiles = new List<string>();
                 foreach (string file in ofd.FileNames)
                 {
@@ -287,14 +352,29 @@ body{font-family: arial, san-serif;}
                         realFiles.Add(file);
                 }
                 if (realFiles.Count > 0)
-                    rules = RuleManager.GetAllRules(realFiles);
+                    rules = RuleManager.GetRulesFromFiles(realFiles);
             }
+            RefreshUI();
         }
 
         private void ClearRules_Click(object sender, RoutedEventArgs e)
         {
             rules.Clear();
             RefreshUI();
+        }
+
+        private void ResetState()
+        {
+            rules.Clear();
+            projectInfo.files.Clear();
+            
+        }
+
+        private void SelectRules_Click(object sender, RoutedEventArgs e)
+        {
+            SelectRules sr = new SelectRules(rules);
+            sr.ShowDialog();
+
         }
     }
 }

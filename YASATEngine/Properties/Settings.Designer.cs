@@ -25,10 +25,10 @@ namespace YASATEngine.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Rules.xml")]
-        public string RulesFile {
+        [global::System.Configuration.DefaultSettingValueAttribute("Rules")]
+        public string RulesDirectory {
             get {
-                return ((string)(this["RulesFile"]));
+                return ((string)(this["RulesDirectory"]));
             }
         }
         

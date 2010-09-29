@@ -16,8 +16,9 @@ namespace YASATEngine
         List<string> _fileExtensions;
         List<string> _guidance;
         Regex _regex;
+        bool _selected;
 
-        internal string Title
+        public string Title
         {
             get
             {
@@ -28,6 +29,13 @@ namespace YASATEngine
                 _title = value;
             }
         }
+
+        public bool Selected
+        {
+            get { return _selected; }
+            set { _selected = value; }
+        }
+
         internal string Description
         {
             get
@@ -108,6 +116,7 @@ namespace YASATEngine
             _regexSearchPattern = Pattern;
             _fileExtensions = Extensions;
             _guidance = Guidance;
+            _selected = true;
 
             _regex = new Regex(_regexSearchPattern, RegexOptions.Compiled | RegexOptions.IgnoreCase);
         }

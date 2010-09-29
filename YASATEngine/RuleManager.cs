@@ -14,10 +14,36 @@ namespace YASATEngine
     {
         public static List<Rule> GetAllRules()
         {
-            return GetAllRules(Settings.Default.RulesFile);
+            return GetRulesFromDirectory(Settings.Default.RulesDirectory);
         }
 
-        public static List<Rule> GetAllRules(string file)
+        public static List<Rule> GetRulesFromFiles(List<string> files)
+        {
+            List<Rule> rulesList = new List<Rule>();
+            foreach (string file in files)
+            {
+                rulesList.AddRange(GetRulesFromFile(file));
+            }
+
+            return rulesList;
+        }
+
+        public static List<Rule> GetRulesFromDirectory(string directory)
+        {
+            List<Rule> rulesList = new List<Rule>();
+            foreach (string dir  in Directory.GetDirectories(directory))
+            {
+                rulesList.AddRange(GetRulesFromDirectory(dir));
+            }
+            foreach (string file in Directory.GetFiles(directory))
+            {
+                rulesList.AddRange(GetRulesFromFile(file));
+            }
+
+            return rulesList;
+        }
+
+        public static List<Rule> GetRulesFromFile(string file)
         {
             List<Rule> rules = new List<Rule>();
 
@@ -58,6 +84,7 @@ namespace YASATEngine
                                     break;
                             }
                         }
+                        r.Selected = true;
                         rules.Add(r);
                     }
                 }
@@ -98,11 +125,11 @@ namespace YASATEngine
         public static void AddRule(Rule r)
         {
 
-            StreamReader InRules = new StreamReader(Settings.Default.RulesFile);
+            StreamReader InRules = new StreamReader(Settings.Default.RulesDirectory);
             string[] lines = Regex.Split(InRules.ReadToEnd(), "\r\n");
             InRules.Close();
 
-            StreamWriter OutRules = new StreamWriter(Settings.Default.RulesFile);
+            StreamWriter OutRules = new StreamWriter(Settings.Default.RulesDirectory);
             
             foreach(string line in lines)
             {
@@ -124,17 +151,6 @@ namespace YASATEngine
         public static int RuleCount()
         {
             return GetAllRules().Count;
-        }
-
-        public static List<Rule> GetAllRules(List<string> realFiles)
-        {
-            List<Rule> rulesList = new List<Rule>();
-            foreach (string file in realFiles)
-            {
-                rulesList.AddRange(GetAllRules(file));
-            }
-
-            return rulesList;
         }
     }
 }
