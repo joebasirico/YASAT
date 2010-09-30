@@ -2,7 +2,6 @@
 <Rules>
   <Rule>
   <Title>Potential format string vulnerability (Carbon Framework)</Title>
-    <RegularExpressionPattern>((url|html)?encode(url|html)?|(url|html)?decode(url|html)?)\(.*\)</RegularExpressionPattern>
     <RegularExpressionPattern>(CFStringCreateWithFormat|CFStringCreateWithFormatAndArguments|CFStringAppendFormat|AEBuildDesc|AEBuildParameters|AEBuildAppleEvent)\s*\([^,]*\)</RegularExpressionPattern>
     <Extensions>
 	  <Extension>m</Extension>
