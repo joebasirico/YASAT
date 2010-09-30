@@ -14,7 +14,6 @@
   <Rule>
   <Title>Potential format string vulnerability (Cocoa Framework)</Title>
   <RegularExpressionPattern>\[\s*(NSString|NSMutableString|NSAlert|NSPredicate|NSException|NSRunAlertPanel)\s*(stringWithFormat|initWithFormat|appendFormat|alertWithMessageText|predicateWithFormat|raise\s*:\s*format\s*:\s*(arguments)?)\s*:([^,]*)\](.*)</RegularExpressionPattern>
-    <RegularExpressionPattern></RegularExpressionPattern>
     <Extensions>
 	  <Extension>m</Extension>
     </Extensions>
