@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Rules>
+  <Rule>
+    <Title>Potential Format String Issue</Title>
+    <RegularExpressionPattern>(printf|wprintf|sprintf|swprintf|fprintf|fwprintf|vprintf|scanf|fscanf|sscanf|fwscanf|wscanf|swscanf|snprintf|StringCbPrintf|StringCbPrintfEx|StringCchPrintf)\([^"].*\)</RegularExpressionPattern>
+    <Extensions>
+      <Extension>c</Extension>
+      <Extension>cpp</Extension>
+      <Extension>h</Extension>
+      <Extension>hpp</Extension>
+    </Extensions>
+    <Guidance>
+    <Url>http://teammentor.securityinnovation.com/ViewGuidanceItem.aspx?ItemID=8f43aec6-922c-44b7-b240-28a400fa301e</Url>
+    </Guidance>
+    <Description>Programming languages such C and Perl use string functions, like printf(), that allow users to pass a format for the input string.  Attackers can manipulate the input parameters passed to these functions to make the function work differently.  Attackers can use format string bugs to overwrite parts of the stack, corrupt memory, and crash the system.  They can use this vulnerability to execute different kind of attacks such as elevation of privileges, authentication bypass, information disclosure, and denial of services.</Description>
+  </Rule>
+  <Rule>
+    <Title>Potential Buffer Overflow Issue</Title>
+    <RegularExpressionPattern>(strcpy|strcat|scanf|strncpy|strncat|gets|gets|readf|freadf ReadFile|fscanf|recv|recvfrom|memcpy|memmove|memset|RegQueryValue|RegQueryKey)\(.*\)</RegularExpressionPattern>
+    <Extensions>
+      <Extension>c</Extension>
+      <Extension>cpp</Extension>
+      <Extension>h</Extension>
+      <Extension>hpp</Extension>
+    </Extensions>
+    <Guidance>
+    <Url>http://teammentor.securityinnovation.com/ViewGuidanceItem.aspx?ItemID=c6fdecbd-8856-4da7-974f-be79b29b9e11</Url>
+    </Guidance>
+    <Description>Buffer overflows are among the most dangerous security vulnerabilities.  They allow attackers to run code within the application they attack, with the application's privileges, and without user interaction.  A buffer overflow occurs when more data is written into a memory buffer than there is room for in the buffer, either because more data was provided than expected, or because the program incorrectly allocated to little memory.  In this way the malicious data overflows  the buffer.  Alternately, data can be written to a different location than the program expected.</Description>
+  </Rule>
+</Rules>

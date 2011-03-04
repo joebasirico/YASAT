@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Rules>
+  <Rule>
+    <Title>Potential Format String Issue</Title>
+    <RegularExpressionPattern>s?printf\([^"].*\)</RegularExpressionPattern>
+    <Extensions>
+      <Extension>pl</Extension>
+    </Extensions>
+    <Guidance>
+    <Url>http://teammentor.securityinnovation.com/ViewGuidanceItem.aspx?ItemID=8f43aec6-922c-44b7-b240-28a400fa301e</Url>
+    </Guidance>
+    <Description>Programming languages such C and Perl use string functions, like printf(), that allow users to pass a format for the input string.  Attackers can manipulate the input parameters passed to these functions to make the function work differently.  Attackers can use format string bugs to overwrite parts of the stack, corrupt memory, and crash the system.  They can use this vulnerability to execute different kind of attacks such as elevation of privileges, authentication bypass, information disclosure, and denial of services.</Description>
+  </Rule>
+</Rules>

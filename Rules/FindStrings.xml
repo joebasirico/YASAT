@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Rules>
+  <Rule>
+    <Title>Found a String</Title>
+    <RegularExpressionPattern>"(.+)"</RegularExpressionPattern>
+    <Extensions>
+      <Extension>cs</Extension>
+    </Extensions>
+    <Guidance>
+      <Url>http://foo.com</Url>
+    </Guidance>
+    <Description>A string discovery Rule. Helpful for finding SQL injeciton or XSS and other Concat. type issues.</Description>
+  </Rule>
+</Rules>

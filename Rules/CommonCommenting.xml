@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Rules>
+  <!--Note, this will not find multiline comments such as common C style /**/ comments and python-style """ """ comments-->
+  <Rule>
+    <Title>Common commented bug</Title>
+    <RegularExpressionPattern>(?://|#|')\s*(?:fixme|bugbug|xxx|todo|hack|debug|note)+</RegularExpressionPattern>
+      <Extensions>
+      <Extension>c</Extension>
+      <Extension>cpp</Extension>
+      <Extension>h</Extension>
+      <Extension>hpp</Extension>
+      <Extension>cs</Extension>
+      <Extension>java</Extension>
+      <Extension>py</Extension>
+      <Extension>php</Extension>
+      <Extension>js</Extension>
+      <Extension>m</Extension>
+      <Extension>pl</Extension>
+      <Extension>sql</Extension>
+      <Extension>vb</Extension>
+      <Extension>rb</Extension>
+      <Extension>erb</Extension>
+    </Extensions>
+    <Guidance>
+    <Url>https://secure.wikimedia.org/wikipedia/en/wiki/FIXME#Tags</Url>
+    </Guidance>
+    <Description>Often developers will make notes in source to remind themselves to return to a block of code due to a known issue or bug.</Description>
+  </Rule>
+</Rules>
