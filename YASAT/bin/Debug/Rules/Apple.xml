@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Rules>
+  <Rule>
+  <Title>Potential format string vulnerability (Carbon Framework)</Title>
+    <RegularExpressionPattern>(CFStringCreateWithFormat|CFStringCreateWithFormatAndArguments|CFStringAppendFormat|AEBuildDesc|AEBuildParameters|AEBuildAppleEvent)\s*([^,]*$)</RegularExpressionPattern>
+    <Extensions>
+	  <Extension>m</Extension>
+    </Extensions>
+    <Guidance>
+	    <Url>http://teammentor.securityinnovation.com/ViewGuidanceItem.aspx?ItemID=99e57fc7-4783-448e-b109-b85dfb1b65b2</Url>
+    </Guidance>
+    <Description>Improperly used functions which handle format strings can lead to crashes and code execution issues.</Description>
+  </Rule>
+  <Rule>
+  <Title>Potential format string vulnerability (Cocoa Framework)</Title>
+  <RegularExpressionPattern>\[\s*(NSString|NSMutableString|NSAlert|NSPredicate|NSException|NSRunAlertPanel)\s*(stringWithFormat|initWithFormat|appendFormat|alertWithMessageText|predicateWithFormat|raise\s*:\s*format\s*:\s*(arguments)?)\s*:([^,]*$)</RegularExpressionPattern>
+    <Extensions>
+	  <Extension>m</Extension>
+    </Extensions>
+    <Guidance>
+	    <Url>http://teammentor.securityinnovation.com/ViewGuidanceItem.aspx?ItemID=99e57fc7-4783-448e-b109-b85dfb1b65b2</Url>
+    </Guidance>
+    <Description>Improperly used functions which handle format strings can lead to crashes and code execution issues.</Description>
+  </Rule>
+</Rules>
