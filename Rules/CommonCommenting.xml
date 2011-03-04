@@ -3,7 +3,7 @@
   <!--Note, this will not find multiline comments such as common C style /**/ comments and python-style """ """ comments-->
   <Rule>
     <Title>Common commented bug</Title>
-    <RegularExpressionPattern>(?://|#|')\s*(?:fixme|bugbug|xxx|todo|hack|debug|note)+</RegularExpressionPattern>
+    <RegularExpressionPattern>(?://|///|#|')\s*(?:fixme|bugbug|xxx|todo|hack|debug|note)+</RegularExpressionPattern>
       <Extensions>
       <Extension>c</Extension>
       <Extension>cpp</Extension>
