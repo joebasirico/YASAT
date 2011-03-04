@@ -5,7 +5,7 @@
     <Grid>
         <Menu Height="22" Name="menu1" HorizontalAlignment="Left" VerticalAlignment="Top" Width="503">
             <MenuItem Header="File">
-                <MenuItem Header="Open Rule File" Name="OpenRuleFile" Click="OpenRuleFile_Click"></MenuItem>
+                <MenuItem Header="Open Rule Files" Name="OpenRuleFile" Click="OpenRuleFile_Click"></MenuItem>
                 <MenuItem Header="Save Current Rule File" Name="SaveCurrentFile"></MenuItem>
                 <Separator></Separator>
                 <MenuItem Header="Exit"  Name="Exit" Click="Exit_Click"></MenuItem>
@@ -20,7 +20,7 @@
         <Button Content="Browse ..." Height="23" HorizontalAlignment="Right" Margin="0,98,12,0" Name="Browse" VerticalAlignment="Top" Width="75" Click="Browse_Click" Grid.Column="2" />
         <Button Content="Scan for Issues" Height="23" HorizontalAlignment="Left" Margin="399,154,0,0" Name="Scan" VerticalAlignment="Top" Width="92" Click="Scan_Click" FontWeight="Bold" IsEnabled="False" />
         <TextBlock Height="23" HorizontalAlignment="Left" Margin="12,80,0,0" Name="textBlock2" Text="Select any file in the directory you would like scanned" VerticalAlignment="Top" Grid.ColumnSpan="3" />
-        
+
         <Button Content="Generate Report" Height="23" HorizontalAlignment="Left" Margin="384,276,0,0" Name="GenReport" VerticalAlignment="Top" Width="107" Click="GenReport_Click" IsEnabled="False" />
         <TextBlock Height="47" HorizontalAlignment="Left" Margin="12,192,0,0" Name="ReportSummary" Text=""  Visibility="Hidden" VerticalAlignment="Top" Width="336" TextWrapping="WrapWithOverflow" Grid.ColumnSpan="3" />
         <CheckBox Content="Disregard filetype associations for rules" Height="16" HorizontalAlignment="Left" Margin="20,161,0,0" Name="disregardFiletypes" VerticalAlignment="Top" />

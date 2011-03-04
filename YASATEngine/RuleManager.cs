@@ -31,15 +31,17 @@ namespace YASATEngine
         public static List<Rule> GetRulesFromDirectory(string directory)
         {
             List<Rule> rulesList = new List<Rule>();
-            foreach (string dir  in Directory.GetDirectories(directory))
+            if (Directory.Exists(directory))
             {
-                rulesList.AddRange(GetRulesFromDirectory(dir));
+                foreach (string dir in Directory.GetDirectories(directory))
+                {
+                    rulesList.AddRange(GetRulesFromDirectory(dir));
+                }
+                foreach (string file in Directory.GetFiles(directory))
+                {
+                    rulesList.AddRange(GetRulesFromFile(file));
+                }
             }
-            foreach (string file in Directory.GetFiles(directory))
-            {
-                rulesList.AddRange(GetRulesFromFile(file));
-            }
-
             return rulesList;
         }
 

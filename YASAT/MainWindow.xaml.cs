@@ -25,8 +25,7 @@ namespace YASAT
     /// </summary>
     public partial class MainWindow : Window
     {
-        List<Rule> rules;
-        //List<SourceCodeIssue> issues = new List<SourceCodeIssue>();
+        List<Rule> rules = new List<Rule>();
         ProjectInfo projectInfo = new ProjectInfo();
 
         public MainWindow()
@@ -34,6 +33,8 @@ namespace YASAT
             InitializeComponent();
 
             rules = RuleManager.GetAllRules();
+            if (rules.Count == 0)
+                MessageBox.Show("No rules files were found. Please make sure the rules directory exists and valid rules are present in that directory. Alternately, select \"Open Rule Files\" from the File Menu.", "No Rules Found", MessageBoxButton.OK, MessageBoxImage.Information);
             RefreshUI();
         }
 
@@ -263,7 +264,7 @@ body{font-family: arial, san-serif;}
             }
             if (haswildCard)
                 sw.WriteLine("<em>Warning:</em> One or more of the rules included in the scan has a wildcard (*) in the extension list" +
-                        " this will cause YASAT to scan all files (including .gif, .zip, .foo, .bar, etc.). This will likely" + 
+                        " this will cause YASAT to scan all files (including .gif, .zip, .foo, .bar, etc.). This will likely" +
                         " not give you the Lines of Code measurements and time to code review estimates you were looking for.");
             sw.WriteLine("{0} lines of code scanned</br>", projectInfo.getTotalLinesOfCode());
             WriteLinesPerExtension("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{0} - {1} <br/>", sw, projectInfo);
@@ -367,7 +368,7 @@ body{font-family: arial, san-serif;}
         {
             rules.Clear();
             projectInfo.files.Clear();
-            
+
         }
 
         private void SelectRules_Click(object sender, RoutedEventArgs e)
@@ -376,5 +377,7 @@ body{font-family: arial, san-serif;}
             sr.ShowDialog();
 
         }
+
+
     }
 }
