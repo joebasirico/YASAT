@@ -9,6 +9,7 @@
     </Extensions>
     <Guidance>
     <Url>http://teammentor.securityinnovation.com/Default.aspx#Filter=%7BSearch%7Cssl%7D</Url>
+    <Url>http://msdn.microsoft.com/en-us/library/system.net.icertificatepolicy.checkvalidationresult.aspx</Url>
     </Guidance>
     <Description>The CheckValidationResult method implements the application certificate validation policy. The method can examine the srvPoint, certificate, request, and certificateProblem parameters to determine whether the certificate should be honored. This method can be overridden to always accept certificates, which can leave a server vulnerable to spoofing and tampering issues</Description>
   </Rule>
