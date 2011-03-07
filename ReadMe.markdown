@@ -8,10 +8,11 @@ I found myself grepping a code base repeatedly and found that I had accumulated 
 I wrote this tool to make that process less painful.
 
 *Program Flow*
-YASAT loads any it can find in the "Rules" directory and will report the number of rules it found.
-Select any file in the source directory. YASAT will recursively load and match each file to rules
-Click "Scan for Issues" - this step may take a while depending on the number of rules and the number of source files.
-When YASAT has finished click the "Generate Report" button to save an HTML version of the issues discovered
+
+* YASAT loads any it can find in the "Rules" directory and will report the number of rules it found.
+* Select any file in the source directory. YASAT will recursively load and match each file to rules
+* Click "Scan for Issues" - this step may take a while depending on the number of rules and the number of source files.
+* When YASAT has finished click the "Generate Report" button to save an HTML version of the issues discovered
 
 
-Primary Developer: Joe Basirico([[https://github.com/joebasirico]])
+Primary Developer: Joe Basirico(https://github.com/joebasirico)
