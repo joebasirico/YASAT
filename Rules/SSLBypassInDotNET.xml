@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Rules>
+  <Rule>
+    <Title>Potential SSL Validation Bypass</Title>
+    <RegularExpressionPattern>CheckValidationResult</RegularExpressionPattern>
+    <Extensions>
+      <Extension>cs</Extension>
+      <Extension>vb</Extension>
+    </Extensions>
+    <Guidance>
+    <Url>http://teammentor.securityinnovation.com/Default.aspx#Filter=%7BSearch%7Cssl%7D</Url>
+    </Guidance>
+    <Description>The CheckValidationResult method implements the application certificate validation policy. The method can examine the srvPoint, certificate, request, and certificateProblem parameters to determine whether the certificate should be honored. This method can be overridden to always accept certificates, which can leave a server vulnerable to spoofing and tampering issues</Description>
+  </Rule>
+</Rules>
