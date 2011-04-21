@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Rules>
+  <Rule>
+    <Title>Common Random Cast Issue</Title>
+    <RegularExpressionPattern>\(int\)\s*Math\.random\(\)</RegularExpressionPattern>
+    <Extensions>
+      <Extension>cs</Extension>
+      <Extension>vb</Extension>
+      <Extension>java</Extension>
+      <Extension>c</Extension>
+      <Extension>cpp</Extension>
+    </Extensions>
+    <Guidance>
+    <Url>http://news.ycombinator.com/item?id=960886</Url>
+    </Guidance>
+    <Description>(int) Math.random() generates a random double from [0,1] which is then cast as an integer (which means that it is always truncated to 0).</Description>
+  </Rule>
+  <Rule>
+    <Title>Use of Random</Title>
+    <RegularExpressionPattern>Math\.random\(\)</RegularExpressionPattern>
+    <Extensions>
+      <Extension>cs</Extension>
+      <Extension>vb</Extension>
+      <Extension>java</Extension>
+      <Extension>c</Extension>
+      <Extension>cpp</Extension>
+    </Extensions>
+    <Guidance>
+    <Url>http://en.wikipedia.org/wiki/Cryptographically_secure_pseudorandom_number_generator</Url>
+    </Guidance>
+    <Description>This rule highlights all occurences of random. These should be vetted to ensure a cryptographic RNG shouldn't be used instead.</Description>
+  </Rule>
+  <Rule>
+    <Title>Use of Secure Random</Title>
+    <RegularExpressionPattern>RandomNumberGenerator</RegularExpressionPattern>
+    <Extensions>
+      <Extension>cs</Extension>
+      <Extension>vb</Extension>
+    </Extensions>
+    <Guidance>
+    <Url>http://msdn.microsoft.com/en-us/library/system.security.cryptography.randomnumbergenerator.aspx</Url>
+    </Guidance>
+    <Description>Make sure this code block does not inappropriately reduce entropy using casts or truncations</Description>
+  </Rule>
+  <Rule>
+    <Title>Use of Secure Random</Title>
+    <RegularExpressionPattern>SecureRandom</RegularExpressionPattern>
+    <Extensions>
+      <Extension>java</Extension>
+    </Extensions>
+    <Guidance>
+    <Url>https://www.owasp.org/index.php/Using_the_Java_Cryptographic_Extensions</Url>
+    </Guidance>
+    <Description>Make sure this code block does not inappropriately reduce entropy using casts or truncations.</Description>
+  </Rule>
+</Rules>
