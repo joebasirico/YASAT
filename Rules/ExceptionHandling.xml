@@ -2,7 +2,7 @@
 <Rules>
   <Rule>
     <Title>Poor Exception Handling and Information Disclosure</Title>
-    <RegularExpressionPattern>e(x)?\.(ToString|getmessage|Message)(\(\))?</RegularExpressionPattern>
+    <RegularExpressionPattern>[^A-Za-z]+e(x)?\.(ToString|getmessage|Message)(\(\))?</RegularExpressionPattern>
     <Extensions>
       <Extension>cs</Extension>
       <Extension>java</Extension>
